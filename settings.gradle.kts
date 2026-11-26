@@ -1,5 +1,7 @@
 pluginManagement {
     repositories {
+        // Google's mirror of Maven Central first: Maven Central often rate-limits CI runners.
+        maven("https://maven-central.storage-download.googleapis.com/maven2/")
         gradlePluginPortal()
         mavenCentral()
     }
@@ -14,6 +16,8 @@ val hasAndroidSdk = System.getenv("ANDROID_HOME") != null ||
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        // Google's mirror of Maven Central first: Maven Central often rate-limits CI runners.
+        maven("https://maven-central.storage-download.googleapis.com/maven2/")
         mavenCentral()
         if (hasAndroidSdk) {
             google {

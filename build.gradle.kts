@@ -7,6 +7,8 @@ buildscript {
         System.getenv("ANDROID_SDK_ROOT") != null ||
         rootProject.file("local.properties").let { it.exists() && it.readText().contains("sdk.dir") }
     repositories {
+        // Google's mirror of Maven Central first: Maven Central often rate-limits CI runners.
+        maven("https://maven-central.storage-download.googleapis.com/maven2/")
         mavenCentral()
         gradlePluginPortal()
         if (hasAndroidSdk) google()
