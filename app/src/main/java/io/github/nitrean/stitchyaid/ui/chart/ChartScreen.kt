@@ -95,11 +95,12 @@ fun ChartScreen(vm: AppViewModel, session: ChartSession) {
     AppScaffold(title = "${pattern.title}: Chart", onBack = vm::back, onHome = vm::home) {
         BoxWithConstraints(Modifier.fillMaxSize()) {
             val wide = maxWidth >= 600.dp
+            val panelWidth = if (maxWidth >= 840.dp) 380.dp else 320.dp
             if (wide) {
                 Row(Modifier.fillMaxSize()) {
                     ChartArea(vm, session, viewport, onViewChanged, Modifier.weight(1f).fillMaxHeight())
                     VerticalDivider(thickness = 2.dp, color = MaterialTheme.colorScheme.outline)
-                    SidePanel(vm, session, viewport, onViewChanged, Modifier.width(if (maxWidth >= 840.dp) 380.dp else 320.dp).fillMaxHeight())
+                    SidePanel(vm, session, viewport, onViewChanged, Modifier.width(panelWidth).fillMaxHeight())
                 }
             } else {
                 // Narrow screens, such as a folded phone: chart on top, big controls below.
